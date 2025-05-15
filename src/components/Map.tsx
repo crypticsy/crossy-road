@@ -1,8 +1,10 @@
-import { rows } from "../metadata";
-import { Grass } from "./Grass";
 import { Row } from "./Row";
+import { Grass } from "./Grass";
+import useStore from "../stores/map";
 
 export function Map() {
+  const rows = useStore((state) => state.rows);
+
   return (
     <>
       <Grass rowIndex={0} />

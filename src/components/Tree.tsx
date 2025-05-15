@@ -8,13 +8,22 @@ type Props = {
 export function Tree({ tileIndex, height }: Props) {
   return (
     <group position-x={tileIndex * tileSize}>
-      <mesh position-z={height / 2 + 20} castShadow receiveShadow>
+      {/* Main foliage */}
+      <mesh position-z={height / 2 + 15} castShadow receiveShadow>
         <boxGeometry args={[30, 30, height]} />
-        <meshLambertMaterial color={0x7aa21d} flatShading />
+        <meshLambertMaterial color={0x67c41e} flatShading />
       </mesh>
+
+      {/* Trunk */}
       <mesh position-z={10} castShadow receiveShadow>
         <boxGeometry args={[15, 15, 20]} />
-        <meshLambertMaterial color={0x4d2926} flatShading />
+        <meshLambertMaterial color={0x644533} flatShading />
+      </mesh>
+
+      {/* Bump on top */}
+      <mesh position-z={height + 15} castShadow receiveShadow>
+        <boxGeometry args={[20, 20, 10]} />
+        <meshLambertMaterial color={0x67c41e} flatShading />
       </mesh>
     </group>
   );
