@@ -1,10 +1,27 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import Game from "./Game";
+import "./index.css";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+// TypeScript-safe Array.prototype.at polyfill
+declare global {
+  interface Array<T> {
+    at(index: number): T | undefined;
+  }
+}
+
+if (!Array.prototype.at) {
+  Array.prototype.at = function (index) {
+    if (index >= 0) {
+      return this[index];
+    } else {
+      return this[this.length + index];
+    }
+  };
+}
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
     <Game />
-  </StrictMode>
+  </React.StrictMode>
 );
